@@ -9,6 +9,9 @@ export default function TextFrom(props) {
     const handleUpClick=()=>{
         setText(text.toUpperCase());
     }
+    const handleLoClick=()=>{
+        setText(text.toLocaleLowerCase());
+    }
     return (
         <div className="w-full max-w-3xl px-4 text-black    py-3  mx-auto ">
             <Field>
@@ -26,7 +29,15 @@ export default function TextFrom(props) {
                     rows={7}
                 />
             </Field>
-            <button className='py-2 px-5 mt-3 bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75' onClick={handleUpClick}>Convert to Uppercase</button>
+            <button className='py-2 px-5 m-3 bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75' onClick={handleUpClick}>Convert to Uppercase</button>
+            <button className='py-2 px-5 my-3 bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75' onClick={handleLoClick}>Convert to Lowercase</button>
+            <div className="preview ">
+            <h1 className='text-3xl font-bold'>Yout text summary</h1>
+            <p>{text.split(" ").length} words , {text.length} characters</p>
+            <p>{0.008*text.split(" ").length} minitus to read</p>
+            <h2 className='text-2xl font-bold '>Privew</h2>
+            <p>{text}</p>
+        </div>
         </div>
     )
 }
