@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Field, Label, Textarea, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 import {
     ChevronDownIcon,
@@ -16,6 +18,54 @@ export default function TextFrom(props) {
     }
     const handleLoClick = () => {
         setText(text.toLocaleLowerCase());
+    }
+    const handleClear = () => {
+        setText("");
+    }
+    const handleCopy = async () => {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    toast.success('copid successfuly', {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
+                })
+                .catch((err) => {
+                    
+                    console.error('Error copying text: ', err);
+                });
+        } else {
+            toast.warn('Clipboard API is not supported.', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+            console.log('Clipboard API is not supported.');
+        }
+    };
+    const handlePaste =()=>{
+        if(navigator.clipboard){
+            navigator.clipboard.readText().then(data=>{
+                setText(data);
+            }).catch(err=>{
+                console.error(err);
+            })
+        }
+    }
+    const handleExtraSpaces = () =>{
+        setText(text.split(/ +/).join(" "));
     }
     return (
         <div className="w-full max-w-3xl px-4 text-black    py-3  mx-auto relative ">
@@ -43,14 +93,38 @@ export default function TextFrom(props) {
                     </MenuButton>
                     <MenuItems
                         transition
-                        anchor={{to:"bottom end" , gap:"5px"}}
-                        
+                        anchor={{ to: "bottom end", gap: "5px" }}
+
                         className="w-52 flex flex-col gap-3 p-2 origin-top-right rounded-xl border border-black/5 bg-black/10  text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0">
                         <MenuItem className="">
                             <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75' onClick={handleUpClick}>Convert to Uppercase</button>
                         </MenuItem>
                         <MenuItem className="">
                             <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75' onClick={handleLoClick}>Convert to Lowercase</button>
+                        </MenuItem>
+                        <MenuItem>
+                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75'
+                                onClick={handleClear}>
+                                clear text
+                            </button>
+                        </MenuItem>
+                        <MenuItem>
+                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75'
+                                onClick={handleCopy}>
+                                copy text
+                            </button>
+                        </MenuItem>
+                        <MenuItem>
+                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75'
+                                onClick={handlePaste}>
+                                Paste text
+                            </button>
+                        </MenuItem>
+                        <MenuItem>
+                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75'
+                                onClick={handleExtraSpaces}>
+                                Remove extra spaces
+                            </button>
                         </MenuItem>
                     </MenuItems>
                 </Menu>
@@ -64,6 +138,7 @@ export default function TextFrom(props) {
                 <h2 className='text-2xl font-bold '>Privew</h2>
                 <p>{text}</p>
             </div>
+            <ToastContainer />
         </div>
     )
 }
