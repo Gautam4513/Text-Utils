@@ -1,7 +1,6 @@
 
-
 import { useState } from 'react'
-import  PropTypes  from 'prop-types'
+import PropTypes from 'prop-types'
 import {
     Dialog,
     DialogPanel,
@@ -23,6 +22,8 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { Link, NavLink } from 'react-router-dom'
+import clsx from 'clsx'
 
 const products = [
     { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
@@ -38,7 +39,7 @@ const callsToAction = [
 
 export default function Navbar(props) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    
+
 
     return (
         <header className="bg-white">
@@ -103,12 +104,14 @@ export default function Navbar(props) {
                         </PopoverPanel>
                     </Popover>
 
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 rounded-md">
+                    <NavLink to="/" className={({ isActive }) => isActive ? 'bg-red-500 text-sm font-semibold leading-6 text-gray-900  px-2 rounded-md' : 'text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 rounded-md'}
+
+                    >
                         Home
-                    </a>
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 rounded-md">
+                    </NavLink>
+                    <NavLink to="/about" className={({ isActive }) => isActive ? 'bg-red-500 text-sm font-semibold leading-6 text-gray-900  px-2 rounded-md' : 'text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 rounded-md'}>
                         About
-                    </a>
+                    </NavLink>
                 </PopoverGroup>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
@@ -140,18 +143,18 @@ export default function Navbar(props) {
                     <div className="mt-6 flow-root">
                         <div className="-my-6 divide-y divide-gray-500/10">
                             <div className="space-y-2 py-6">
-                                <a
-                                    href="#"
+                                <NavLink
+                                    to="/"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     Home
-                                </a>
-                                <a
-                                    href="#"
+                                </NavLink>
+                                <NavLink
+                                    to="/about"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     About
-                                </a>
+                                </NavLink>
                                 <Disclosure as="div" className="-mx-3">
                                     <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                         Product
@@ -189,6 +192,6 @@ export default function Navbar(props) {
 Navbar.propTypes = {
     title: PropTypes.string
 }
-Navbar.defaultProps={
+Navbar.defaultProps = {
     title: "set title hear"
 }
