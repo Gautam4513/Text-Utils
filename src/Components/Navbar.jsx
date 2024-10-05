@@ -104,12 +104,12 @@ export default function Navbar(props) {
                         </PopoverPanel>
                     </Popover>
 
-                    <NavLink to="/" className={({ isActive }) => isActive ? 'bg-red-500 text-sm font-semibold leading-6 text-gray-900  px-2 rounded-md' : 'text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 rounded-md'}
+                    <NavLink to="/" className={({ isActive }) => isActive ? 'text-sm font-semibold leading-6 text-gray-900 bg-zinc-200 px-2 rounded-md' : 'text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 rounded-md'}
 
                     >
                         Home
                     </NavLink>
-                    <NavLink to="/about" className={({ isActive }) => isActive ? 'bg-red-500 text-sm font-semibold leading-6 text-gray-900  px-2 rounded-md' : 'text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 rounded-md'}>
+                    <NavLink to="/about" className={({ isActive }) => isActive ? 'text-sm font-semibold leading-6 text-gray-900 bg-zinc-200 px-2 rounded-md' : 'text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 rounded-md'}>
                         About
                     </NavLink>
                 </PopoverGroup>
@@ -143,16 +143,11 @@ export default function Navbar(props) {
                     <div className="mt-6 flow-root">
                         <div className="-my-6 divide-y divide-gray-500/10">
                             <div className="space-y-2 py-6">
-                                <NavLink
-                                    to="/"
-                                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                <NavLink to="/" className={({ isActive }) => isActive ? 'text-sm font-semibold block  leading-6 text-gray-900 bg-zinc-200 px-2 rounded-md' : 'text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 rounded-md block'}
                                 >
                                     Home
                                 </NavLink>
-                                <NavLink
-                                    to="/about"
-                                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                                >
+                                <NavLink to="/about" className={({ isActive }) => isActive ? 'text-sm block font-semibold leading-6 text-gray-900 bg-zinc-200 px-2 rounded-md' : 'text-sm font-semibold leading-6 text-gray-900 hover:bg-zinc-200 px-2 block rounded-md'}>
                                     About
                                 </NavLink>
                                 <Disclosure as="div" className="-mx-3">
