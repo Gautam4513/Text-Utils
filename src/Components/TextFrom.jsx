@@ -67,6 +67,32 @@ export default function TextFrom(props) {
     const handleExtraSpaces = () =>{
         setText(text.split(/ +/).join(" "));
     }
+    const btns =[
+        {
+            "name":"Convert to Uppercase",
+            "fun":handleUpClick
+        },
+        {
+            "name":"Convert to Lowercase",
+            "fun":handleLoClick
+        },
+        {
+            "name":"clear text",
+            "fun":handleClear
+        },
+        {
+            "name":"copy text",
+            "fun":handleCopy
+        },
+        {
+            "name":"paste Text",
+            "fun":handlePaste
+        },
+        {
+            "name":"Remove extra spaces",
+            "fun":handleExtraSpaces
+        }
+    ]
     return (
         <div className="w-full max-w-3xl px-4 text-black    py-3  mx-auto relative ">
             <Field>
@@ -84,7 +110,7 @@ export default function TextFrom(props) {
                     rows={7}
                 />
             </Field>
-            <div className="editMenu absolute top-0 right-0">
+            <div className="editMenu  absolute top-10 lg:top-0 scale-75 lg:scale-100 right-0">
                 <Menu>
                     <MenuButton className={clsx('group px-2 bg-violet-500/50 rounded-md flex gap-2 py-2 ')}>
                         <PencilIcon className='size-6 fill-black/60 ' />
@@ -96,36 +122,11 @@ export default function TextFrom(props) {
                         anchor={{ to: "bottom end", gap: "5px" }}
 
                         className="w-52 flex flex-col gap-3 p-2 origin-top-right rounded-xl border border-black/5 bg-black/10  text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0">
-                        <MenuItem className="">
-                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75' onClick={handleUpClick}>Convert to Uppercase</button>
-                        </MenuItem>
-                        <MenuItem className="">
-                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75' onClick={handleLoClick}>Convert to Lowercase</button>
-                        </MenuItem>
-                        <MenuItem>
-                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75'
-                                onClick={handleClear}>
-                                clear text
-                            </button>
-                        </MenuItem>
-                        <MenuItem>
-                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75'
-                                onClick={handleCopy}>
-                                copy text
-                            </button>
-                        </MenuItem>
-                        <MenuItem>
-                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75'
-                                onClick={handlePaste}>
-                                Paste text
-                            </button>
-                        </MenuItem>
-                        <MenuItem>
-                            <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75'
-                                onClick={handleExtraSpaces}>
-                                Remove extra spaces
-                            </button>
-                        </MenuItem>
+                            {btns.map((item)=>{
+                                return <MenuItem >
+                                <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75' onClick={item.fun}>{item.name}</button>
+                            </MenuItem>
+                            })}
                     </MenuItems>
                 </Menu>
             </div>
