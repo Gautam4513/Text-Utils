@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-// import Nav from './Components/Nav.jsx';
+
 
 
 
@@ -14,11 +14,11 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <><Navbar /><TextFrom heading="Enter the text to analyze" /></>
+      element: <><Navbar title="Text Utils"/><TextFrom heading="Enter the text to analyze" /></>
     },
     {
       path: "/about",
-      element: <><Navbar /><About /></>
+      element: <><Navbar title="Text Utils" /><About /></>
     }
   ]);
   return (

@@ -122,8 +122,8 @@ export default function TextFrom(props) {
                         anchor={{ to: "bottom end", gap: "5px" }}
 
                         className="w-52 flex flex-col gap-3 p-2 origin-top-right rounded-xl border border-black/5 bg-black/10  text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0">
-                            {btns.map((item)=>{
-                                return <MenuItem >
+                            {btns.map((item,index)=>{
+                                return <MenuItem key={index}>
                                 <button className='py-2 px-5  bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 active:outline-none active:ring active:ring-violet-400 active:ring-opacity-75' onClick={item.fun}>{item.name}</button>
                             </MenuItem>
                             })}
