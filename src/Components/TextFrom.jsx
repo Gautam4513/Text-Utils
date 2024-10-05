@@ -134,8 +134,8 @@ export default function TextFrom(props) {
 
             <div className="preview ">
                 <h1 className='text-3xl font-bold'>Yout text summary</h1>
-                <p>{text.split(" ").length} words , {text.length} characters</p>
-                <p>{0.008 * text.split(" ").length} minitus to read</p>
+                <p>{text.split(/\s+/).filter((element)=>element.length!==0).length} words , {text.length} characters</p>
+                <p>{0.008 * text.split(/\s+/).filter((element)=>element.length!==0).length} minitus to read</p>
                 <h2 className='text-2xl font-bold '>Privew</h2>
                 <p>{text}</p>
             </div>
